@@ -29,9 +29,11 @@
     $movie3 = new Movies('The Witch', 2015, ['Horror', 'Drammatico']);
     $movie3->setLength('1h 32m');
 
-    var_dump($movie1);
-    var_dump($movie2);
-    var_dump($movie3);
+    $movies = [
+        $movie1,
+        $movie2,
+        $movie3
+    ]
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,8 +45,46 @@
 
 </head>
 <body>
-    <h1>
-        Hello World
-    </h1>
+    <div class="container">
+        <div class="row my-5">
+            <?php foreach($movies as $movie){ ?>
+                <div class="col-4">
+                    <div class="content text-center">
+                        <h3>
+                            <?php echo $movie->title ?>
+                        </h3>
+                        <table class='table text-start'>
+                            <tr>
+                                <th>
+                                    Anno di uscita:
+                                </th>
+                                <td>
+                                    <?php echo $movie->year ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Generi:
+                                </th>
+                                <td>
+                                    <?php foreach($movie->genre as $genre){
+                                        echo $genre.' ';
+                                    } ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Durata:
+                                </th>
+                                <td>
+                                    <?php echo $movie->getLength() ?>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
 </body>
 </html>
